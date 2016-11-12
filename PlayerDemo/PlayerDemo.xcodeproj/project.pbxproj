@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		741A67551DD6BC53007C373D /* TEVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A67541DD6BC53007C373D /* TEVideoPlayer.m */; };
 		DBB39E191DD5688E0077EA90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB39E181DD5688E0077EA90 /* main.m */; };
 		DBB39E1C1DD5688E0077EA90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB39E1B1DD5688E0077EA90 /* AppDelegate.m */; };
 		DBB39E1F1DD5688E0077EA90 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB39E1E1DD5688E0077EA90 /* ViewController.m */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		741A67531DD6BC53007C373D /* TEVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEVideoPlayer.h; sourceTree = "<group>"; };
+		741A67541DD6BC53007C373D /* TEVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEVideoPlayer.m; sourceTree = "<group>"; };
 		DBB39E141DD5688E0077EA90 /* PlayerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBB39E181DD5688E0077EA90 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DBB39E1A1DD5688E0077EA90 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -91,6 +94,8 @@
 		DBB39E161DD5688E0077EA90 /* PlayerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				741A67531DD6BC53007C373D /* TEVideoPlayer.h */,
+				741A67541DD6BC53007C373D /* TEVideoPlayer.m */,
 				DBB39E1A1DD5688E0077EA90 /* AppDelegate.h */,
 				DBB39E1B1DD5688E0077EA90 /* AppDelegate.m */,
 				DBB39E1D1DD5688E0077EA90 /* ViewController.h */,
@@ -237,6 +242,7 @@
 				DBB39E1F1DD5688E0077EA90 /* ViewController.m in Sources */,
 				DBB39E1C1DD5688E0077EA90 /* AppDelegate.m in Sources */,
 				DBB39E191DD5688E0077EA90 /* main.m in Sources */,
+				741A67551DD6BC53007C373D /* TEVideoPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

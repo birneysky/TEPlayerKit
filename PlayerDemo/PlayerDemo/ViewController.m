@@ -7,11 +7,13 @@
 //
 
 #import "ViewController.h"
-#import <TEPlayerKit/TEPlayerKit.h>
+
 #import <AVFoundation/AVFoundation.h>
 
-@interface ViewController ()<RTMPGuestRtmpDelegate>
-@property (nonatomic, strong) RTMPGuestKit *guestKit;
+#import "TEVideoPlayer.h"
+
+@interface ViewController ()
+@property (weak, nonatomic) IBOutlet TEVideoPlayer *videoPlayer;
 @end
 
 @implementation ViewController
@@ -19,39 +21,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    AudioSessionInitialize(NULL,
-                           kCFRunLoopCommonModes,
-                           NULL,NULL);
-    self.guestKit = [[RTMPGuestKit alloc] initWithDelegate:self];
-    [self.guestKit StartRtmpPlay:@"rtmp://live.hkstv.hk.lxdns.com/live/hks" andRender:self.view];
-//    if (self.urlStr) {
-//
-//    }
+
+    [self.videoPlayer addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+    [self.videoPlayer startRtmpPlayWithUrl:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"];
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-#pragma mark - *** RTMPGuestRtmpDelegate ***
-- (void)OnRtmplayerOK {
-    NSLog(@"OnRtmpStreamOK");
-    //self.stateRTMPLabel.text = @"连接RTMP服务成功";
-}
-- (void)OnRtmplayerStatus:(int) cacheTime withBitrate:(int) curBitrate {
-    NSLog(@"OnRtmplayerStatus:%d withBitrate:%d",cacheTime,curBitrate);
-    //self.stateRTMPLabel.text = [NSString stringWithFormat:@"RTMP缓存区:%d 码率:%d",cacheTime,curBitrate];
-}
-- (void)OnRtmplayerCache:(int) time {
-    NSLog(@"OnRtmplayerCache:%d",time);
-    //self.stateRTMPLabel.text = [NSString stringWithFormat:@"RTMP正在缓存:%d",time];
-}
-
-- (void)OnRtmplayerClosed:(int) errcode {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
     
 }
+
 
 @end

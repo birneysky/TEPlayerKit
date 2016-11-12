@@ -116,8 +116,9 @@ private:
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         self.videoShowView = [[RTCEAGLVideoView alloc] initWithFrame:render.frame];
         self.videoShowView.delegate = self;
-        self.videoShowView.autoresizingMask = UIViewAutoresizingFlexibleWidth  | UIViewAutoresizingFlexibleHeight;
+        NSLog(@"render bounds %@, frame %@",NSStringFromCGRect(render.bounds),NSStringFromCGRect(render.frame));
         [render addSubview:self.videoShowView];
+        [render addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
         self.parView = render;
         self.parView.backgroundColor = [UIColor blackColor];
         rtmpc_guest_->Guest().StartRtmpPlay([strUrl UTF8String], (__bridge void*)_videoShowView);
@@ -147,8 +148,24 @@ private:
 #pragma mark - *** RTCEAGLVideoViewDelegate ***
 - (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size
 {
-    CGRect rect =  AVMakeRectWithAspectRatioInsideRect(size,videoView.bounds);
+    NSLog(@"videoShowView.superview bounds %@,frame %@",NSStringFromCGRect(videoView.superview.bounds),NSStringFromCGRect(videoView.superview.frame));
+    NSLog(@"videoShowView %@,%@",NSStringFromCGRect(videoView.bounds),NSStringFromCGRect(videoView.frame));
+    
+    CGRect rect =  AVMakeRectWithAspectRatioInsideRect(size,videoView.superview.bounds);
     videoView.frame = rect;
+}
+
+#pragma makr - *** KVO ***
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    NSLog(@"videoShowView.superview bounds %@,frame %@",NSStringFromCGRect(self.videoShowView.superview.bounds),NSStringFromCGRect(self.videoShowView.superview.frame));
+    NSLog(@"videoShowView bounds %@, frame %@",NSStringFromCGRect(self.videoShowView.bounds),NSStringFromCGRect(self.videoShowView.frame));
+    if ([keyPath isEqualToString:@"bounds"] && object == self.videoShowView.superview) {
+        //CGRect newRect = [[change objectForKey:@"new"] CGRectValue];
+        CGRect rect =  AVMakeRectWithAspectRatioInsideRect(self.videoShowView.frame.size,self.videoShowView.superview.bounds);
+        self.videoShowView.frame = rect;
+        NSLog(@"change %@",change);
+    }
 }
 
 @end
