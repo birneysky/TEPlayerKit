@@ -102,6 +102,7 @@ void AnyRtmplayerImpl::OnMessage(rtc::Message* msg)
 			rtmp_pull_ = NULL;
 		}
 		if (ply_decoder_) {
+            ply_decoder_->SetVideoRender(NULL);
 			delete ply_decoder_;
 			ply_decoder_ = NULL;
 		}

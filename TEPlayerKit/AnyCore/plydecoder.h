@@ -35,7 +35,7 @@ public:
 	PlyDecoder();
 	virtual ~PlyDecoder();
 
-	void SetVideoRender(rtc::VideoSinkInterface<cricket::VideoFrame> *render){ video_render_ = render; };
+	void SetVideoRender(rtc::VideoSinkInterface<cricket::VideoFrame> *render);
     bool IsPlaying();
     int  CacheTime();
 

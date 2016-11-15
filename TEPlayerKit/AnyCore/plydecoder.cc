@@ -224,3 +224,8 @@ int32_t PlyDecoder::Decoded(webrtc::VideoFrame& decodedImage)
 	}
 	return 0;
 }
+
+void PlyDecoder::SetVideoRender(rtc::VideoSinkInterface<cricket::VideoFrame> *render)
+{
+    video_render_ = render;
+}

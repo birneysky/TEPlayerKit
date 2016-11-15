@@ -31,6 +31,8 @@ typedef NS_ENUM(NSInteger,VideoShowMode){
 @interface RTMPGuestKit : NSObject {
     
 }
+
+@property (nonatomic, readonly) UIView* player;
 /**
  *  Player show mode
  */

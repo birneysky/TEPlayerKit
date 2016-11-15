@@ -73,13 +73,14 @@ void RtmpGuesterImpl::StopRtmpPlay()
 	if (av_rtmp_started_) {
 		av_rtmp_started_ = false;
 		rtmp_url_ = "";
-		webrtc::AnyRtmpCore::Inst().StopAudioTrack();
 		av_rtmp_player_->StopPlay();
+        webrtc::AnyRtmpCore::Inst().StopAudioTrack();
 		if (video_render_ != NULL) {
 			delete video_render_;
 			video_render_ = NULL;
 		}
-	}
+        
+    }
 }
 
 //* For AnyRtmplayerEvent
