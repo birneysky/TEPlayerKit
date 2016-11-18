@@ -17,7 +17,12 @@
 
 @property (nonatomic,strong) UIActivityIndicatorView* indicator;
 
+@property (nonatomic,strong) UIPanGestureRecognizer* recognizer;
+
 @end
+
+
+static TEVideoPlayer* videoPlayer;
 
 @implementation TEVideoPlayer
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -27,6 +32,12 @@
     }
     return self;
 }
+
+- (void)dealloc
+{
+    NSLog(@"♻️♻️♻️♻️ TEVideoPlayer ~ %@ ",self);
+}
+
 
 - (void)layoutSubviews
 {
@@ -73,6 +84,7 @@
 
 - (void)stopRtmpPlay
 {
+    //videoPlayer = self;
     [self.guestKit StopRtmpPlay];
 }
 
@@ -101,6 +113,14 @@
      NSLog(@"🌺🌺🌺🌺🌺🌺🌺OnRtmplayerClosed");
     NSString* url = self.rtmpUrl[arc4random() % self.rtmpUrl.count];
     [self startRtmpPlayWithUrl:url];
+
+}
+
+- (void)clear
+{
+    [self.guestKit clear];
+    self.guestKit = nil;
+    
 }
 
 #pragma mark - ***Gesture Action ***

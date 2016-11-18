@@ -98,9 +98,11 @@ private:
 }
 - (void) clear
 {
+    [self.videoShowView.superview removeObserver:self forKeyPath:@"bounds"];
     rtmpc_guest_->SetUIAvalible(NO);
-    [self StopRtmpPlay];
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
     
+    rtmpc_guest_->Guest().StopRtmpPlay();
     [self.videoShowView removeFromSuperview];
     self.videoShowView = nil;
 }
@@ -143,6 +145,7 @@ private:
 }
 - (void)StopRtmpPlay
 {
+    [self.videoShowView.superview removeObserver:self forKeyPath:@"bounds"];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     
     rtmpc_guest_->Guest().StopRtmpPlay();

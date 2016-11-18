@@ -6,23 +6,23 @@
 //  Copyright © 2016年 com.V2.Telescope. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "TEViewController.h"
 
 #import <AVFoundation/AVFoundation.h>
 
 #import "TEVideoPlayer.h"
 
-@interface ViewController ()
+@interface TEViewController ()
 @property (weak, nonatomic) IBOutlet TEVideoPlayer *videoPlayer;
 @end
 
-@implementation ViewController
+@implementation TEViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
-    [self.videoPlayer addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+//    [self.videoPlayer addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
     [self.videoPlayer startRtmpPlayWithUrl:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"];
 }
 
@@ -32,5 +32,13 @@
     
 }
 
+- (IBAction)closeBtnClicked:(id)sender {
+    [self.videoPlayer clear];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
+    
+    
+}
 
 @end

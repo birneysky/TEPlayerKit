@@ -255,7 +255,7 @@ class LogMultilineState {
 
 // When possible, pass optional state variable to track various data across
 // multiple calls to LogMultiline.  Otherwise, pass NULL.
-void LogMultiline(LoggingSeverity level, const char* label, bool input,
+extern void LogMultiline(LoggingSeverity level, const char* label, bool input,
                   const void* data, size_t len, bool hex_mode,
                   LogMultilineState* state);
 
